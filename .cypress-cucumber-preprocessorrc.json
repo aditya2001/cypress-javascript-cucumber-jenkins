@@ -2,14 +2,15 @@
   "json": {
     "enabled": true,
     "output": "jsonlogs/log.json",
-    "formatter": "cucumber-json-formatter.exe"
+    "formatter": "windows-cucumber-json-formatter.exe"
   },
   "messages": {
     "enabled": true,
     "output": "jsonlogs/messages.ndjson"
   },
   "html": {
-    "enabled": true
+    "enabled": true,
+    "output": "cypress/report/cucumber-report.html"
   },
   "stepDefinitions": [
     "[filepath]/**/*.{js,ts}",
