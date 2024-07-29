@@ -25,6 +25,7 @@
     "esbuild": "0.16.4",
     "multiple-cucumber-html-reporter": "3.0.1",
     "puppeteer": "13.7.0",
-    "typescript": "2.8.3"
+    "typescript": "2.8.3",
+    "cypress-xpath": "1.6.2"
   }
 }
