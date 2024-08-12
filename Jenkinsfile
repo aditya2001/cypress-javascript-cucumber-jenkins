@@ -1,19 +1,17 @@
-import groovy.json.JsonOutput
-
-def COLOR_MAP = [
-    'SUCCESS': 'good', 
-    'FAILURE': 'danger',
-]
-
-def getBuildUser() {
-    return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
-}
-
-
 pipeline {
     //The agent section specifies where the entire Pipeline, or a specific stage, 
     //will execute in the Jenkins environment depending on where the agent section is placed.
-    agent any
+    agent none
+
+    triggers {
+        cron('TZ=America/New_York\n30 0 * * *')
+    }
+
+    options {
+        timestamps()
+        timeout(time: 20, unit: 'HOURS')
+        ansiColor('xterm')
+    }
     
     //The environment directive specifies a sequence of key-value pairs which will be defined
     //as environment variables for all steps, or stage-specific steps, depending on where the environment directive is located within the Pipeline.
@@ -33,19 +31,19 @@ pipeline {
     //The options directive allows configuring Pipeline-specific options from within the Pipeline itself.
     //Pipeline provides a number of these options, such as buildDiscarder, but they may also be provided by
     //plugins, such as timestamps. Ex: retry on failure
-    options {
-        ansiColor('xterm')
-    }
+
 
     //The stage directive goes in the stages section and should contain a steps section, an optional agent section, 
     //or other stage-specific directives. Practically speaking, all of the real work done by a Pipeline will be wrapped
     //in one or more stage directives.
     stages {
         
-        stage('Build'){
+        stage('Checkout Project'){
+            agent any
             //The steps section defines a series of one or more steps to be executed in a given stage directive.
             steps {
-                echo "Building the application"
+                checkoutSCM repo: 'CYPRESS-CUCUMBER-ESBUILD-JENKINS', branch: 'main'
+                echo "Checkout the project"
             }
         }
         
@@ -65,19 +63,8 @@ pipeline {
 
     post {
         always {
-            //The script step takes a block of Scripted Pipeline and executes that in the Declarative Pipeline. 
-            //For most use-cases, the script step should be unnecessary in Declarative Pipelines, but it can provide
-            //a useful "escape hatch." script blocks of non-trivial size and/or complexity should be moved into Shared Libraries instead.
-            script {
-                BUILD_USER = getBuildUser()
-            }
-            
-            slackSend channel: '#jenkins-example',
-                color: COLOR_MAP[currentBuild.currentResult],
-                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n Tests:${SPEC} executed at ${BROWSER} \n More info at: ${env.BUILD_URL}HTML_20Report/"
-            
+            archiveArtifacts artifacts: "cypress/results/videos/*.mp4", onlyIfSuccessful: false
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/report', reportFiles: 'cucumber-report.html', reportName: 'HTML Report', reportTitles: ''])
-            deleteDir()
         }
     }
 }
