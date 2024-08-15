@@ -48,8 +48,10 @@ pipeline {
                 CYPRESS_CACHE_FOLDER = ".cache/cypress"
             }
             steps {
-                sh "npm i"
-                sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
+                // sh "npm i"
+                // sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
+                bat "npm i"
+                bat "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
             }
         }
         
