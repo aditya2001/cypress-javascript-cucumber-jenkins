@@ -37,7 +37,7 @@ pipeline {
            steps {
              echo "Building the application"
 //               checkout scmGit(
-//                     branches: [[name: "master"]],
+//                     branches: [[name: "main"]],
 //                     userRemoteConfigs: [[credentialsId: 'ssh-keys',
 //                         url: 'git@github.com:aditya2001/cypress-cucumber-esbuild-jenkins.git']])
              }
@@ -64,7 +64,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: "cypress/results/videos/*.mp4", onlyIfSuccessful: false
+            archiveArtifacts artifacts: "cypress/videos/*.mp4", onlyIfSuccessful: false
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/report', reportFiles: 'cucumber-report.html', reportName: 'HTML Report', reportTitles: ''])
         }
     }
