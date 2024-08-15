@@ -1,7 +1,8 @@
+import groovy.json.JsonOutput
 pipeline {
     //The agent section specifies where the entire Pipeline, or a specific stage, 
     //will execute in the Jenkins environment depending on where the agent section is placed.
-    agent none
+    agent any
 
     triggers {
         cron('TZ=America/New_York\n30 0 * * *')
@@ -13,11 +14,6 @@ pipeline {
         ansiColor('xterm')
     }
     
-    //The environment directive specifies a sequence of key-value pairs which will be defined
-    //as environment variables for all steps, or stage-specific steps, depending on where the environment directive is located within the Pipeline.
-    environment {
-        BUILD_USER = ''
-    }
     
     //The parameters directive provides a list of parameters that a user should provide when triggering the Pipeline.
     //The values for these user-specified parameters are made available to Pipeline steps via the params object, see
@@ -37,17 +33,20 @@ pipeline {
     //or other stage-specific directives. Practically speaking, all of the real work done by a Pipeline will be wrapped
     //in one or more stage directives.
     stages {
-        
-        stage('Checkout Project'){
-            agent any
-            //The steps section defines a series of one or more steps to be executed in a given stage directive.
-            steps {
-                checkoutSCM repo: 'CYPRESS-CUCUMBER-ESBUILD-JENKINS', branch: 'main'
-                echo "Checkout the project"
-            }
-        }
+        stage('Building'){
+           steps {
+             echo "Building the application"
+//               checkout scmGit(
+//                     branches: [[name: "master"]],
+//                     userRemoteConfigs: [[credentialsId: 'ssh-keys',
+//                         url: 'git@github.com:aditya2001/cypress-cucumber-esbuild-jenkins.git']])
+             }
+          }
         
         stage('Testing') {
+            environment {
+                CYPRESS_CACHE_FOLDER = ".cache/cypress"
+            }
             steps {
                 sh "npm i"
                 sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
