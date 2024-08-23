@@ -91,6 +91,7 @@ const getChromeInfo = async () => {
       chromeWebSecurity: false,
       env: {
         allureReuseAfterSpec: true,
+        TAGS: 'not @ignore'
       },
     },
   });

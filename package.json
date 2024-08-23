@@ -10,7 +10,9 @@
     "cypress:execution-allure": "cypress run --env allure=true",
     "allure:clear": "rm -r allure-results/ allure-report cypress/screenshots || true",
     "allure:report": "allure generate allure-results --clean -o allure-report",
-    "allure:history": "mv -f allure-report/history allure-results/history && rm -r allure-report || true"
+    "allure:history": "mv -f allure-report/history allure-results/history && rm -r allure-report || true",
+    "cypress:run:chrome:uat": "cypress run --browser PuppeteerChromium --config baseUrl=https://www.saucedemo.com",
+    "cypress:parallel:chrome": "cypress-parallel -s cypress:run:chrome:uat -d 'cypress/e2e/features/*' -t 6 -m false"
   },
   "keywords": [
     "cypress"
@@ -26,6 +28,7 @@
     "multiple-cucumber-html-reporter": "3.0.1",
     "puppeteer": "13.7.0",
     "typescript": "2.8.3",
-    "cypress-xpath": "1.6.2"
+    "cypress-xpath": "1.6.2",
+    "cypress-parallel": "0.14.0"
   }
 }
