@@ -141,6 +141,9 @@ pipeline {
           }
         }
 
+        
+        
+
         // stage('Testing') {
         //     environment {
         //         CYPRESS_CACHE_FOLDER = ".cache/cypress"
@@ -152,6 +155,19 @@ pipeline {
         //         bat "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
         //     }
         // }
+
+
+        stage('Cross Browser Testing'){
+          when {
+              expression {
+                  return params.CROSSBROWSER == 'true'
+                }
+            }
+          steps{
+            bat "npm i"
+            bat "npm run cypress:parallel:chrome"
+          }
+        }
         
         stage('Deploy'){
             steps {

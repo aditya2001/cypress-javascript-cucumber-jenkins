@@ -10,3 +10,5 @@ npx cypress run --browser chrome --spec cypress/e2e/features/* --config baseUrl=
 
 When you want to run sceanrios in parallel- use below script
 cypress:parallel:chrome
+
+
