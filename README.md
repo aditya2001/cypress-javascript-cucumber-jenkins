@@ -20,8 +20,11 @@ We are using package cypress-parallel for parallel execution of Scenarios.
 ## Test Execution via Jenkins
 The Paramterized Jenkins job should look like below. The entire configuration is done in Jenkins file.
 By default test will run with cross browser values as false. User can updated cross browser to true and test will run on all browsers.
-
+#### Running test on single browser 
 ![alt text](image-1.png)
+
+#### Running test on multiple browser
+![alt text](image-3.png)
 
 ## HTML reports
 
