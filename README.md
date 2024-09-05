@@ -13,7 +13,9 @@
 ### When you want to run specific feature file on specific browser and specific env.
 npx cypress run --browser chrome --spec cypress/e2e/features/* --config baseUrl="https://www.saucedemo.com"
 
-## When you want to run sceanrios in parallel- use below script
-cypress:parallel:chrome
-#### We are using package cypress-parallel for parallel execution of Scenarios.
+### When you want to run sceanrios in parallel- use below script
+1. cypress:parallel:chrome
+We are using package cypress-parallel for parallel execution of Scenarios.
+
+
 
