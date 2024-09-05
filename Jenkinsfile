@@ -178,7 +178,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: "cypress/videos/*.mp4", onlyIfSuccessful: false
+            archiveArtifacts artifacts: "cypress/report/cucumber-report.html ,cypress/videos/*.mp4", onlyIfSuccessful: false
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/report', reportFiles: 'cucumber-report.html', reportName: 'HTML Report', reportTitles: ''])
         }
     }
