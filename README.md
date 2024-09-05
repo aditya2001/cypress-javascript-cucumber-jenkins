@@ -1,8 +1,5 @@
-# cypress-cucumber-esbuild-jenkins
-1. Create repository online on git hub and do git clone locally using below command
-2. git clone https://github.com/aditya2001/cypress-cucumber-esbuild-jenkins.git
-3. Open VC code locally and do npm init to create package.json and added required folder structures
-4. Do git init to convert to git repository, .git folder get created
+## cypress-cucumber-esbuild-jenkins
+Cypress is a JavaScript based UI automation tool. This framework is created using Cypress with Cuucmber. Cypress integration with cucumber is possible using cypress-cucumber-preprocessor plugin. We are using cypress-esbuild-preprocessor is used to bundle specs using esbuild. This framework supports cross browser and parallel testing.
 
 ## Installing node on local windows.
 1. Navigate to URL https://nodejs.org/en/download/prebuilt-installer, and download windows installer package.
@@ -33,6 +30,12 @@ By default test will run with cross browser values as false. User can updated cr
 Note- If you face issues viewing html report, type below in Manage Jenkins-->Script Console
 #### command
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox allow-same-origin allow-scripts allow-popups allow-downloads; default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; media-src 'self'; font-src 'self'; frame-src 'self' data:;")
+
+## Steps to clone the repo
+1. Create repository online on git hub and do git clone locally using below command
+2. git clone https://github.com/aditya2001/cypress-cucumber-esbuild-jenkins.git
+3. Open VC code locally and do npm init to create package.json and added required folder structures
+4. Do git init to convert to git repository, .git folder get created
 
 
 
