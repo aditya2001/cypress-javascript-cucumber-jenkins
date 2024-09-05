@@ -15,5 +15,5 @@ npx cypress run --browser chrome --spec cypress/e2e/features/* --config baseUrl=
 
 ## When you want to run sceanrios in parallel- use below script
 cypress:parallel:chrome
-We are using package cypress-parallel for parallel execution of Scenarios.
+#### We are using package cypress-parallel for parallel execution of Scenarios.
 
