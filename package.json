@@ -21,10 +21,10 @@
   "license": "ISC",
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "15.0.0",
-    "@bahmutov/cypress-esbuild-preprocessor": "2.1.5",
+    "@bahmutov/cypress-esbuild-preprocessor": "2.2.0",
     "@shelex/cypress-allure-plugin": "2.40.2",
     "cypress": "12.0.2",
-    "esbuild": "0.16.4",
+    "esbuild": "0.17.6",
     "multiple-cucumber-html-reporter": "3.0.1",
     "puppeteer": "13.7.0",
     "typescript": "2.8.3",
